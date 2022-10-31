@@ -3,14 +3,13 @@ orbs:
   boost-security-scanner: boostsecurityio/scanner@4
 workflows:
   build:
+    environment:
+      BOOST_IMAGE_NAME: ubuntu:jammy-20220101
     jobs:
       - boost-security-scanner/scan:
           name: SBOM
           context: boost-security
           registry_module: boostsecurityio/trivy-sbom
-      - run:
-          name: Set Docker image env
-          command: echo 'export BOOST_IMAGE_NAME="ubuntu:jammy-20220101"' >> "$BASH_ENV"
       - boost-security-scanner/scan:
           name: Docker image scan
           context: boost-security
