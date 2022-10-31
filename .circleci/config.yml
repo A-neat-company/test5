@@ -3,8 +3,6 @@ orbs:
   boost-security-scanner: boostsecurityio/scanner@4
 workflows:
   build:
-    environment:
-      BOOST_IMAGE_NAME: ubuntu:jammy-20220101
     jobs:
       - boost-security-scanner/scan:
           name: SBOM
@@ -14,3 +12,5 @@ workflows:
           name: Docker image scan
           context: boost-security
           registry_module: boostsecurityio/trivy-image
+        environment:
+          BOOST_IMAGE_NAME: ubuntu:jammy-20220101
