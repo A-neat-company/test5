@@ -8,3 +8,9 @@ workflows:
           name: SBOM
           context: boost-security
           registry_module: boostsecurityio/trivy-sbom
+      - boost-security-scanner/scan:
+          name: Docker image scan
+          context: boost-security
+          registry_module: boostsecurityio/trivy-image
+        environment:
+          BOOST_IMAGE_NAME: ubuntu:jammy-20220101
